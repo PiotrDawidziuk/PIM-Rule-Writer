@@ -1,4 +1,4 @@
-aaa;bbb;a
-aaa;bba;a
-asda;cas;a
-12;123;a
+aaa;bbb
+aaa;bba
+asda;cas
+12;123

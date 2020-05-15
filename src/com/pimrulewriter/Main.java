@@ -16,11 +16,7 @@ public class Main {
 
         if (columns == 0) {
             System.out.println("Wrong number of columns or columns are not equal");
-        } else if (columns == 1){
-            ruleWriter = new RuleWriter(inputFileReader.getColumnA());
-        } else if (columns ==2){
-            ruleWriter = new RuleWriter(inputFileReader.getColumnA(),inputFileReader.getColumnB());
-        } else if (columns ==3){
+        } else {
             ruleWriter = new RuleWriter(inputFileReader.getColumnA(),inputFileReader.getColumnB(),inputFileReader.getColumnC());
         }
 
