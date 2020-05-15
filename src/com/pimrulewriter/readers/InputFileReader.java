@@ -7,13 +7,15 @@ import java.util.Scanner;
 
 public class InputFileReader {
 
-    ArrayList<String> columnA = new ArrayList<>();
-    ArrayList<String> columnB = new ArrayList<>();
-    ArrayList<String> columnC = new ArrayList<>();
+    private ArrayList<String> columnA = new ArrayList<>();
+    private ArrayList<String> columnB = new ArrayList<>();
+    private ArrayList<String> columnC = new ArrayList<>();
+
+    private int numberOfColumns = 0;
 
     public void openFile(){
-        String delimiter = ";";
 
+        String delimiter = ";";
         Scanner input  = new Scanner(System.in);
         System.out.println("What is the delimiter of your CSV file? ; or , (; being the default value)");
         delimiter = input.next();
@@ -32,15 +34,19 @@ public class InputFileReader {
                 String[] tempData = data.split(delimiter);
                 if (tempData.length==1) {
                     columnA.add(tempData[0]);
+                    numberOfColumns = 1;
                 } else if (tempData.length==2) {
                     columnA.add(tempData[0]);
                     columnB.add(tempData[1]);
+                    numberOfColumns = 2;
                 } else if (tempData.length==3) {
                     columnA.add(tempData[0]);
                     columnB.add(tempData[1]);
                     columnC.add(tempData[2]);
+                    numberOfColumns = 3;
                 } else {
                     System.out.println("Wrong number of columns");
+                    numberOfColumns = 0;
                     break;
                 }
             }
@@ -61,5 +67,9 @@ public class InputFileReader {
 
     public ArrayList<String> getColumnC() {
         return columnC;
+    }
+
+    public int getNumberOfColumns() {
+        return numberOfColumns;
     }
 }
