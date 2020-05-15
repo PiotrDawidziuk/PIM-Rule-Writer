@@ -20,23 +20,32 @@ public class RuleWriter {
 
         String typeOfRule = "brand";
         Scanner input  = new Scanner(System.in);
-        System.out.println("What kind of rule do you want to write? Brand rule with 1 column [b1], brand rule with 2 columns [b2]");
+        System.out.println("What kind of rule do you want to write?\n " +
+                " - Brand rule with 1 column [b1]\n" +
+                " - brand rule with 2 columns [b2] (brand name, category name");
         typeOfRule = input.next().toLowerCase();
         if (typeOfRule.equals("b1")){
-            writeBrandRuleWithOneColumn(columnA);
-        } else {
+            writeBrandRule(columnA,null,1);
+        } else if (typeOfRule.equals("b2")){
+            writeBrandRule(columnA,columnB,2);
+        }
+        else {
             System.out.println("Wrong command");
         }
 
     }
 
-    private void writeBrandRuleWithOneColumn(ArrayList<String> columnA) {
+    private void writeBrandRule(ArrayList<String> columnA,ArrayList<String> columnB,int numberOfColumns) {
         try {
             FileWriter fileWriter = new FileWriter("generated_rules.yml");
 
             fileWriter.write("rules:\n");
             for (int i = 0; i < columnA.size(); i++){
-                fileWriter.write("    add_"+columnA.get(i).toLowerCase()+"_brand_category:\n");
+                if (numberOfColumns == 2){
+                    fileWriter.write("    add_"+columnB.get(i)+"_category:\n");
+                } else {
+                    fileWriter.write("    add_"+columnA.get(i).toLowerCase()+"_brand_category:\n");
+                }
                 fileWriter.write("        priority: 90\n");
                 fileWriter.write("            -   field: brand\n");
                 fileWriter.write("                value: \""+columnA.get(i)+"\"\n");
@@ -45,7 +54,11 @@ public class RuleWriter {
                 fileWriter.write("            -   type: add\n");
                 fileWriter.write("                field: categories\n");
                 fileWriter.write("                items:\n");
-                fileWriter.write("                  - brands_"+columnA.get(i).toLowerCase()+"\n");
+                if (numberOfColumns == 2){
+                    fileWriter.write("                  - "+columnB.get(i)+"\n");
+                } else {
+                    fileWriter.write("                  - brands_"+columnA.get(i).toLowerCase()+"\n");
+                }
             }
 
 

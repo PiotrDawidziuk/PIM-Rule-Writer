@@ -1,4 +1,3 @@
-aaa;bbb
-aaa;bba
-asda;cas
-12;123
+IBM;marka_IBM
+Microsoft;marka_Microsoft
+Samsung;marka_Samsung
