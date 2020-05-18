@@ -25,31 +25,37 @@ public class InputFileReader {
         String fileName = input.next();
 
         try {
-            File myObj = new File(fileName);
-            Scanner myReader = new Scanner(myObj);
-            while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
-                data = data.replace("\"", "");
-                String[] tempData = data.split(delimiter);
-                if (tempData.length==1) {
-                    columnA.add(tempData[0]);
-                    numberOfColumns = 1;
-                } else if (tempData.length==2) {
-                    columnA.add(tempData[0]);
-                    columnB.add(tempData[1]);
-                    numberOfColumns = 2;
-                } else if (tempData.length==3) {
-                    columnA.add(tempData[0]);
-                    columnB.add(tempData[1]);
-                    columnC.add(tempData[2]);
-                    numberOfColumns = 3;
-                } else {
-                    System.out.println("Wrong number of columns");
-                    numberOfColumns = 0;
-                    break;
+            File file = new File(fileName);
+            if(file.exists() && !file.isDirectory()) {
+
+                Scanner myReader = new Scanner(file);
+                while (myReader.hasNextLine()) {
+                    String data = myReader.nextLine();
+                    data = data.replace("\"", "");
+                    String[] tempData = data.split(delimiter);
+                    if (tempData.length==1) {
+                        columnA.add(tempData[0]);
+                        numberOfColumns = 1;
+                    } else if (tempData.length==2) {
+                        columnA.add(tempData[0]);
+                        columnB.add(tempData[1]);
+                        numberOfColumns = 2;
+                    } else if (tempData.length==3) {
+                        columnA.add(tempData[0]);
+                        columnB.add(tempData[1]);
+                        columnC.add(tempData[2]);
+                        numberOfColumns = 3;
+                    } else {
+                        System.out.println("Wrong number of columns");
+                        numberOfColumns = 0;
+                        break;
+                    }
                 }
+                myReader.close();
+            } else {
+                System.out.println("Wrong file name. Check if you included the file extension .csv or .txt");
             }
-            myReader.close();
+
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
