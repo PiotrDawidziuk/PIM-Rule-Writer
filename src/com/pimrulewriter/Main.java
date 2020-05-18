@@ -1,8 +1,6 @@
 package com.pimrulewriter;
 
 import com.pimrulewriter.additional.Intro;
-import com.pimrulewriter.readers.InputFileReader;
-import com.pimrulewriter.writers.RuleWriter;
 
 import java.util.Scanner;
 
