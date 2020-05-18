@@ -11,10 +11,11 @@ public class ParameterToCategoryRuleWriter {
 
         System.out.println("From which field do you want to get your category?");
         String field = input.next().toLowerCase();
+        String prefix = "";
         if(numberOfColumns ==1){
             System.out.println("What prefix to do you want to give to your category name? (ex. category_, brand_ etc.)");
+            prefix = input.next();
         }
-        String prefix = input.next();
         try {
             FileWriter fileWriter = new FileWriter("generated_rules.yml");
 
