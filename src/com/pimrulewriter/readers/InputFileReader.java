@@ -13,10 +13,9 @@ public class InputFileReader {
 
     private int numberOfColumns = 0;
 
-    public void openFile(){
+    public void openFile(Scanner input){
 
         String delimiter = ";";
-        Scanner input  = new Scanner(System.in);
         System.out.println("What is the delimiter of your CSV file? ; or , (; being the default value)");
         delimiter = input.next();
         if (!delimiter.equals(",")){

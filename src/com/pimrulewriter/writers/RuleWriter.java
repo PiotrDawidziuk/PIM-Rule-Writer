@@ -20,14 +20,23 @@ public class RuleWriter {
 
         String typeOfRule = "brand";
         Scanner input  = new Scanner(System.in);
-        System.out.println("What kind of rule do you want to write?\n " +
+        System.out.println("What kind of rule do you want to write?\n" +
                 " - Brand rule with 1 column [b1]\n" +
-                " - brand rule with 2 columns [b2] (brand name, category name");
+                " - Brand rule with 2 columns [b2] (brand name, category name)\n" +
+                " - Other parameter-to-category rule with one column [ptc]\n" +
+                " - Other parameter-to-category rule with two columns [ptc2]\n");
         typeOfRule = input.next().toLowerCase();
+
+        ParameterToCategoryRuleWriter PTCRwriter = new ParameterToCategoryRuleWriter();
+
         if (typeOfRule.equals("b1")){
-            writeBrandRule(columnA,null,1);
+            PTCRwriter.writeBrandRule(columnA,null,1);
         } else if (typeOfRule.equals("b2")){
-            writeBrandRule(columnA,columnB,2);
+            PTCRwriter.writeBrandRule(columnA,columnB,2);
+        } else if (typeOfRule.equals("ptc")) {
+            PTCRwriter.writeOtherParameterToCategoryRule(columnA,null,1,input);
+        } else if (typeOfRule.equals("ptc2")){
+            PTCRwriter.writeOtherParameterToCategoryRule(columnA,columnB,2,input);
         }
         else {
             System.out.println("Wrong command");
@@ -35,40 +44,5 @@ public class RuleWriter {
 
     }
 
-    private void writeBrandRule(ArrayList<String> columnA,ArrayList<String> columnB,int numberOfColumns) {
-        try {
-            FileWriter fileWriter = new FileWriter("generated_rules.yml");
-
-            fileWriter.write("rules:\n");
-            for (int i = 0; i < columnA.size(); i++){
-                if (numberOfColumns == 2){
-                    fileWriter.write("    add_"+columnB.get(i)+"_category:\n");
-                } else {
-                    fileWriter.write("    add_"+columnA.get(i).toLowerCase()+"_brand_category:\n");
-                }
-                fileWriter.write("        priority: 90\n");
-                fileWriter.write("            -   field: brand\n");
-                fileWriter.write("                value: \""+columnA.get(i)+"\"\n");
-                fileWriter.write("                channel: null\n");
-                fileWriter.write("        actions:\n");
-                fileWriter.write("            -   type: add\n");
-                fileWriter.write("                field: categories\n");
-                fileWriter.write("                items:\n");
-                if (numberOfColumns == 2){
-                    fileWriter.write("                  - "+columnB.get(i)+"\n");
-                } else {
-                    fileWriter.write("                  - brands_"+columnA.get(i).toLowerCase()+"\n");
-                }
-            }
-
-
-            fileWriter.close();
-            System.out.println("Brand rules generated");
-        } catch (
-                IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-    }
 
 }
