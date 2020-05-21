@@ -23,11 +23,14 @@ public class RuleWriter {
                 " - Brand rule with 2 columns [b2] (brand name, category name)\n" +
                 " - Other parameter-to-category rule with one column [ptc]\n" +
                 " - Other parameter-to-category rule with two columns [ptc2]\n" +
-                " - Empty category rule [e]\n");
+                " - Empty category rule [e]\n" +
+                " - Rule that sets a value to parameter when other parameter value is on the list [v2p]\n"
+        );
         typeOfRule = input.next().toLowerCase();
 
         ParameterToCategoryRuleWriter PTCRwriter = new ParameterToCategoryRuleWriter();
         EmptyCategoryRuleWriter ECRWriter = new EmptyCategoryRuleWriter();
+        IfAttributeListedSetParameterToRuleWriter IALSPTRwriter = new IfAttributeListedSetParameterToRuleWriter();
 
         if (typeOfRule.equals("b1")){
             PTCRwriter.writeBrandRule(columnA,null,1);
@@ -39,6 +42,8 @@ public class RuleWriter {
             PTCRwriter.writeOtherParameterToCategoryRule(columnA,columnB,2,input);
         } else if (typeOfRule.equals("e")){
             ECRWriter.writeEmptyCategoryRule(input);
+        } else if (typeOfRule.equals("v2p")){
+            IALSPTRwriter.writeSetParameterRule(columnA,input);
         }
         else {
             System.out.println("Wrong command");

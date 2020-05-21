@@ -16,8 +16,8 @@ public class Intro {
                 "/_/   /___/_/  /_/  /_/ |_|\\__,_/_/\\___/     |__/|__/_/  /_/\\__/\\___/_/     \n" +
                 "                                                                            \n" + Colors.ANSI_RESET);
         System.out.println(Colors.ANSI_CYAN + "Welcome to PIM Rule Writer by Piotr Dawidziuk, 2020" + Colors.ANSI_RESET);
-        System.out.println(Colors.ANSI_YELLOW + "To use this program you must prepare a csv file with columns of data that is going to be used to create a YAML file with rules." +
-                " If you wish to write a rule that doesn't need a file, create an empty file"+ Colors.ANSI_RESET);
+        System.out.println(Colors.ANSI_YELLOW + "To use this program you must prepare a csv file with columns of data that is going to be used to create a YAML file with rules. \n" +
+                "If you wish to write a rule that doesn't need a file, create an empty file"+ Colors.ANSI_RESET);
     }
 
 

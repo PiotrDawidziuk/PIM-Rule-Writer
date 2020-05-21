@@ -15,7 +15,7 @@ public class EmptyCategoryRuleWriter {
             FileWriter fileWriter = new FileWriter("generated_rules.yml");
 
             fileWriter.write("rules:\n");
-            fileWriter.write("    empty_category_to_delisted:\n" +
+            fileWriter.write("    empty_category_to_"+categoryName+":\n" +
                     "        priority: 90\n" +
                     "        conditions:\n" +
                     "            -   field: categories\n" +
