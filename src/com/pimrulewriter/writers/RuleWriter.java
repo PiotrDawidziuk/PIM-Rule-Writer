@@ -22,10 +22,12 @@ public class RuleWriter {
                 " - Brand rule with 1 column [b1]\n" +
                 " - Brand rule with 2 columns [b2] (brand name, category name)\n" +
                 " - Other parameter-to-category rule with one column [ptc]\n" +
-                " - Other parameter-to-category rule with two columns [ptc2]\n");
+                " - Other parameter-to-category rule with two columns [ptc2]\n" +
+                " - Empty category rule [e]\n");
         typeOfRule = input.next().toLowerCase();
 
         ParameterToCategoryRuleWriter PTCRwriter = new ParameterToCategoryRuleWriter();
+        EmptyCategoryRuleWriter ECRWriter = new EmptyCategoryRuleWriter();
 
         if (typeOfRule.equals("b1")){
             PTCRwriter.writeBrandRule(columnA,null,1);
@@ -35,6 +37,8 @@ public class RuleWriter {
             PTCRwriter.writeOtherParameterToCategoryRule(columnA,null,1,input);
         } else if (typeOfRule.equals("ptc2")){
             PTCRwriter.writeOtherParameterToCategoryRule(columnA,columnB,2,input);
+        } else if (typeOfRule.equals("e")){
+            ECRWriter.writeEmptyCategoryRule(input);
         }
         else {
             System.out.println("Wrong command");

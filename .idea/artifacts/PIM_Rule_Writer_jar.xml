@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="PIM-Rule-Writer:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/PIM_Rule_Writer_jar</output-path>
+    <root id="archive" name="PIM-Rule-Writer.jar">
+      <element id="module-output" name="PIM-Rule-Writer" />
+    </root>
+  </artifact>
+</component>
