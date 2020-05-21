@@ -24,13 +24,15 @@ public class RuleWriter {
                 " - Other parameter-to-category rule with one column [ptc]\n" +
                 " - Other parameter-to-category rule with two columns [ptc2]\n" +
                 " - Empty category rule [e]\n" +
-                " - Rule that sets a value to parameter when other parameter value is on the list [v2p]\n"
+                " - Rule that sets a value to parameter when other parameter value is on the list [v2p]\n" +
+                " - Rule that copies parameters [cp]\n"
         );
         typeOfRule = input.next().toLowerCase();
 
         ParameterToCategoryRuleWriter PTCRwriter = new ParameterToCategoryRuleWriter();
         EmptyCategoryRuleWriter ECRWriter = new EmptyCategoryRuleWriter();
         IfAttributeListedSetParameterToRuleWriter IALSPTRwriter = new IfAttributeListedSetParameterToRuleWriter();
+        CopyParameterRuleWriter CPRwriter = new CopyParameterRuleWriter();
 
         if (typeOfRule.equals("b1")){
             PTCRwriter.writeBrandRule(columnA,null,1);
@@ -44,6 +46,8 @@ public class RuleWriter {
             ECRWriter.writeEmptyCategoryRule(input);
         } else if (typeOfRule.equals("v2p")){
             IALSPTRwriter.writeSetParameterRule(columnA,input);
+        } else if (typeOfRule.equals("cp")){
+            CPRwriter.copyParameter(columnA,columnB,input);
         }
         else {
             System.out.println("Wrong command");
